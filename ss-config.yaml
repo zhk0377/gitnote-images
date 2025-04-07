@@ -1,0 +1,19 @@
+# ss-config.yaml
+proxies:
+  - name: "ss-server"
+    type: ss
+    server: 13.125.224.115  # 替换为你的服务器公网IP
+    port: 45467
+    cipher: aes-256-gcm
+    password: "12345"       # 替换为你的密码
+    udp: true               # 启用UDP转发（可选）
+
+proxy-groups:
+  - name: "Proxy"
+    type: select
+    proxies:
+      - "ss-server"
+
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxy
